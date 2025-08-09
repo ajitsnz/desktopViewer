@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --win",
+    "dist": "electron-builder --win nsis",
+    "dist:portable": "electron-builder --win portable",
     "signal": "node signaling-server.js"
   },
   "dependencies": {
@@ -23,7 +24,7 @@
     "productName": "DesktopShare",
     "files": ["**/*"],
     "win": {
-      "target": ["nsis"],
+      "target": ["nsis", "portable"],
       "artifactName": "${productName}-Setup-${version}.${ext}"
     },
     "nsis": {

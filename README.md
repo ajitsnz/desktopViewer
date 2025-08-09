@@ -1,4 +1,29 @@
 # DesktopShare
+
+## Quick Run (Development)
+```bash
+# 1. Clone repo
+git clone <your-fork-or-repo-url>
+cd desktopViewer
+# 2. Install Node dependencies
+npm install
+# 3. Start signaling server (Terminal 1)
+npm run signal
+# 4. Start Electron app (Terminal 2)
+npm start
+# 5. In app: enter http://localhost:3000, click Connect, select a source
+```
+For a second machine: repeat steps 1–4 pointing the signaling URL to the first machine's IP (e.g. http://192.168.1.10:3000).
+
+## Quick Build (Portable EXE only)
+```bash
+npm install
+npm run dist:portable
+```
+Resulting portable .exe appears in `dist/` (filename contains `portable`).
+
+---
+
 Simple Electron + WebRTC desktop sharing demo. Allows one machine to share its desktop and another to view it using a lightweight signaling server (Socket.IO).
 
 ## Features
@@ -68,6 +93,29 @@ Artifact name pattern: `DesktopShare-Setup-<version>.exe`
 npm run dist:portable
 ```
 Generates a `DesktopShare-Setup-<version>.exe` (installer) plus a separate portable executable (inside `dist/` with `portable` in filename).
+
+### Detailed Steps From Fresh Windows to Portable .exe
+1. Install Node.js (https://nodejs.org)
+2. (Optional) Enable Developer Mode (Settings > System > For Developers) to avoid symlink issues.
+3. Clone repo:
+   ```bash
+   git clone <repo-url>
+   cd desktopViewer
+   ```
+4. Install dependencies:
+   ```bash
+   npm install
+   ```
+5. Build portable:
+   ```bash
+   npm run dist:portable
+   ```
+6. Find portable exe in `dist/` (name contains `portable`). Copy/share it.
+7. (Optional) Also run full installer build:
+   ```bash
+   npm run dist
+   ```
+8. Test by running portable exe. Start signaling server separately if remote viewing needed.
 
 ### If Build Fails with winCodeSign / symlink Privilege Error
 Error example: `Cannot create symbolic link ... winCodeSign`.

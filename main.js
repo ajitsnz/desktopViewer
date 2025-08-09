@@ -34,6 +34,8 @@ function buildMenu() {
         { label: 'Local Full', click: () => sendMenuAction('local-full') },
         { label: 'Side by Side', click: () => sendMenuAction('side') },
         { type: 'separator' },
+        { label: 'Reset View', accelerator: 'CmdOrCtrl+R', click: () => sendMenuAction('reset') },
+        { type: 'separator' },
         { role: 'togglefullscreen' },
         { role: 'reload' },
         { role: 'toggleDevTools' }
@@ -54,7 +56,7 @@ function buildMenu() {
             dialog.showMessageBox({
               type: 'info',
               title: 'About DesktopShare',
-              message: 'DesktopShare\nFree to use.\nSimple peer-to-peer desktop sharing demonstration.',
+              message: 'DesktopShare\nFree to use.\nCreated for user: AJ\nSimple peer-to-peer desktop sharing demonstration.',
               buttons: ['OK']
             });
           }

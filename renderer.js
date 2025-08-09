@@ -154,6 +154,18 @@ function clearFull() { document.querySelectorAll('.full').forEach(el => el.class
 function remoteFull() { clearFull(); document.getElementById('remoteWrap').classList.add('full'); document.getElementById('localWrap').classList.add('hidden'); }
 function localFull() { clearFull(); document.getElementById('localWrap').classList.add('full'); document.getElementById('remoteWrap').classList.add('hidden'); }
 function sideBySide() { clearFull(); }
+function resetView() {
+  clearFull();
+  const container = document.getElementById('videosContainer');
+  const localWrap = document.getElementById('localWrap');
+  const remoteWrap = document.getElementById('remoteWrap');
+  // Ensure order Local then Remote
+  if (localWrap.nextElementSibling !== remoteWrap) {
+    container.insertBefore(localWrap, remoteWrap);
+  }
+  document.getElementById('qualityProfile').value = 'best';
+  if (currentSourceId) selectSource(currentSourceId);
+}
 
 // Listen for menu actions from main
 if (window.api && window.api.onMenuAction) {
@@ -166,6 +178,7 @@ if (window.api && window.api.onMenuAction) {
       case 'local-full': localFull(); break;
       case 'side': sideBySide(); break;
       case 'refresh-sources': loadSources(); break;
+      case 'reset': resetView(); break;
     }
   });
 }

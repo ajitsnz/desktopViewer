@@ -1,0 +1,18 @@
+directories:
+  output: dist
+  buildResources: build
+appId: com.example.desktopshare
+productName: DesktopShare
+files:
+  - filter:
+      - '**/*'
+win:
+  target:
+    - nsis
+  artifactName: ${productName}-Setup-${version}.${ext}
+nsis:
+  oneClick: true
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: false
+electronVersion: 30.5.1

@@ -15,27 +15,7 @@ npm install
 npm run dist:portable
 dist\win-unpacked\DesktopShare.exe
 # 5. Run now to check options
-
--------------------------------------------------------------
-Simple Electron + WebRTC desktop sharing demo. Allows one machine to share its desktop and another to view it using a lightweight signaling server (Socket.IO).
-
-## Features
-- Screen / window capture via Electron desktopCapturer
-- Peer-to-peer WebRTC video (STUN: stun.l.google.com:19302)
-- External signaling server (Socket.IO) for multi‑machine use
-- Quality profiles: Speed (720p/15fps) or Best (1080p/30fps)
-- View options: swap, remote full, local full, side by side
-- Portable build option (no installer) & NSIS installer build
-- Lock screen pause overlay (stream auto‑pauses during Windows lock)
-
-## Prerequisites
-- Windows 10/11
-- Node.js 18+ (recommended)
-- (Optional) Enable Windows Developer Mode for easier building (avoids symlink issues in some cases)
-
-## Install Dependencies
-```bash
-npm install
+run - DesktopShare.exe
 ```
 
 ## Start Signaling Server

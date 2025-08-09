@@ -2,15 +2,16 @@
 
 ## Quick Run (Development)
 ```bash
-# 1. Clone repo
+
+# 1. Install git in your machine
+https://git-scm.com/downloads
+# 2. Clone repo
 git clone https://github.com/ajitsnz/desktopViewer.git
 cd desktopViewer
-# 2. install nodeJS
-
-# 3. Install Nodejs dependencies
+# 3. install nodeJS
+https://nodejs.org/en/download/
+# 4. Install Nodejs dependencies
 npm install
-# 3. Start signaling server (Terminal 1)
-
 # 4. Create portable 
 npm run dist:portable
 dist\win-unpacked\DesktopShare.exe

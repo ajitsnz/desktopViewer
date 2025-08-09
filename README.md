@@ -14,8 +14,9 @@ https://nodejs.org/en/download/
 npm install
 # 4. Create portable 
 npm run dist:portable
-dist\win-unpacked\DesktopShare.exe
+file will be create here : dist\win-unpacked\DesktopShare.exe
 # 5. Run now to check options
+open - dist\win-unpacked\DesktopShare.exe
 run - DesktopShare.exe
 ```
 

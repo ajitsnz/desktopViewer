@@ -2,7 +2,9 @@
 node_modules/
 
 # Build / distribution outputs
-dist/
+# Keep dist exe artifacts tracked (override below)
+# comment out dist/ ignore so we can commit built installer if needed
+# dist/
 dist-*/
 release/
 win-unpacked/
@@ -12,7 +14,8 @@ build/
 
 # Electron packaged artifacts
 *.asar
-*.exe
+# allow exe to commit
+# *.exe
 *.msi
 *.dmg
 *.zip

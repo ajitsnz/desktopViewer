@@ -19,26 +19,9 @@
     .full { position:fixed; inset:0; width:100vw !important; height:100vh !important; z-index:100; background:#000; margin:0; padding:0; }
     .hidden { display:none !important; }
     #footer { font-size:11px; color:#666; }
-    #welcome { position:absolute; inset:0; background:rgba(0,0,0,.75); color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; z-index:300; text-align:center; padding:30px; }
-    #welcome button { padding:8px 16px; font-size:14px; }
-    code { background:#222; color:#9f9; padding:2px 4px; border-radius:3px; font-size:12px; }
   </style>
 </head>
 <body>
-  <div id="welcome">
-    <h2 style="margin:0;">DesktopShare</h2>
-    <div style="max-width:640px; line-height:1.4; font-size:14px;">
-      <p>Steps to start sharing:</p>
-      <ol style="text-align:left; margin:0 auto 10px; padding-left:20px;">
-        <li>Run signaling server: <code>npm run signal</code> (or use existing URL)</li>
-        <li>Enter the server URL below and click <b>Connect</b></li>
-        <li>Select a source from the list to start streaming</li>
-        <li>Open the app on another machine, connect to same URL to view</li>
-      </ol>
-      <p>You can close this panel once you connect.</p>
-    </div>
-    <button id="welcomeClose">Got it</button>
-  </div>
   <div id="sidebar">
     <div>
       <input id="signalUrl" placeholder="http://localhost:3000" style="width:100%; box-sizing:border-box;" />
@@ -74,7 +57,6 @@
   <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
   <script src="renderer.js"></script>
   <script>
-    // Basic UI logic for restored controls
     const localWrap = document.getElementById('localWrap');
     const remoteWrap = document.getElementById('remoteWrap');
     const videosContainer = document.getElementById('videosContainer');
@@ -82,8 +64,6 @@
     const remoteFullBtn = document.getElementById('remoteFullBtn');
     const localFullBtn = document.getElementById('localFullBtn');
     const bothSideBtn = document.getElementById('bothSideBtn');
-    const welcome = document.getElementById('welcome');
-    document.getElementById('welcomeClose').onclick = () => welcome.style.display='none';
 
     function clearFull() {
       document.querySelectorAll('.full').forEach(el => el.classList.remove('full'));

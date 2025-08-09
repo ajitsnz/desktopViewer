@@ -3,27 +3,20 @@
 ## Quick Run (Development)
 ```bash
 # 1. Clone repo
-git clone <your-fork-or-repo-url>
+git clone https://github.com/ajitsnz/desktopViewer.git
 cd desktopViewer
-# 2. Install Node dependencies
+# 2. install nodeJS
+
+# 3. Install Nodejs dependencies
 npm install
 # 3. Start signaling server (Terminal 1)
-npm run signal
-# 4. Start Electron app (Terminal 2)
-npm start
-# 5. In app: enter http://localhost:3000, click Connect, select a source
-```
-For a second machine: repeat steps 1–4 pointing the signaling URL to the first machine's IP (e.g. http://192.168.1.10:3000).
 
-## Quick Build (Portable EXE only)
-```bash
-npm install
+# 4. Create portable 
 npm run dist:portable
-```
-Resulting portable .exe appears in `dist/` (filename contains `portable`).
+dist\win-unpacked\DesktopShare.exe
+# 5. Run now to check options
 
----
-
+-------------------------------------------------------------
 Simple Electron + WebRTC desktop sharing demo. Allows one machine to share its desktop and another to view it using a lightweight signaling server (Socket.IO).
 
 ## Features

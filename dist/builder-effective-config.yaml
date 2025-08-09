@@ -9,6 +9,7 @@ files:
 win:
   target:
     - nsis
+    - portable
   artifactName: ${productName}-Setup-${version}.${ext}
 nsis:
   oneClick: true

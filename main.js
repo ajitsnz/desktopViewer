@@ -56,7 +56,7 @@ function buildMenu() {
             dialog.showMessageBox({
               type: 'info',
               title: 'About DesktopShare',
-              message: 'DesktopShare\nFree to use.\nCreated for user: AJ\nSimple peer-to-peer desktop sharing demonstration.',
+              message: 'DesktopShare\nFree to use.\nCreated AJ: AJ\nSimple peer-to-peer desktop sharing demonstration.',
               buttons: ['OK']
             });
           }

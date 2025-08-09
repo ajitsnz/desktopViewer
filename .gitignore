@@ -1,0 +1,69 @@
+# Node & dependency folders
+node_modules/
+
+# Build / distribution outputs
+dist/
+dist-*/
+release/
+win-unpacked/
+app-release/
+out/
+build/
+
+# Electron packaged artifacts
+*.asar
+*.exe
+*.msi
+*.dmg
+*.zip
+*.7z
+
+# Logs & diagnostics
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Coverage / testing
+coverage/
+*.lcov
+
+# Temporary files
+.tmp/
+.temp/
+tmp/
+temp/
+*.pid
+
+# Editor / IDE
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Swap / backup
+*.swp
+*.swo
+*.orig
+
+# TypeScript incremental build info
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Crashpad / Electron crash reports
+**/Crashpad/completed/*
+**/Crashpad/pending/*
+
+# Optional: ignore lock files if you prefer reproducible installs elsewhere
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

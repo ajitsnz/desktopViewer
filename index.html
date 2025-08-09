@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Desktop Share</title>
+  <style>
+    body { font-family: Arial, sans-serif; display:flex; gap:16px; height:100vh; margin:0; }
+    #sidebar { width:260px; box-sizing:border-box; padding:10px; border-right:1px solid #ccc; display:flex; flex-direction:column; gap:10px; }
+    ul { list-style:none; padding:0; margin:0; flex:1; overflow:auto; }
+    li { padding:6px 8px; cursor:pointer; border-bottom:1px solid #eee; font-size:13px; }
+    li:hover { background:#f0f0f0; }
+    .videos { flex:1; display:flex; gap:12px; padding:10px; box-sizing:border-box; }
+    .videos > div { flex:1; display:flex; flex-direction:column; }
+    video { flex:1; width:100%; height:100%; object-fit:contain; border:1px solid #444; background:#000; border-radius:4px; }
+    h3 { margin:0 0 6px; font-size:14px; }
+    #status { font-size:12px; color:#555; min-height:16px; }
+    #controls button { font-size:12px; padding:4px 8px; margin:0 4px 4px 0; }
+    #controls { display:flex; flex-wrap:wrap; }
+    .full { position:fixed; inset:0; width:100vw !important; height:100vh !important; z-index:100; background:#000; margin:0; padding:0; }
+    .hidden { display:none !important; }
+    #footer { font-size:11px; color:#666; }
+    #welcome { position:absolute; inset:0; background:rgba(0,0,0,.75); color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; z-index:300; text-align:center; padding:30px; }
+    #welcome button { padding:8px 16px; font-size:14px; }
+    code { background:#222; color:#9f9; padding:2px 4px; border-radius:3px; font-size:12px; }
+  </style>
+</head>
+<body>
+  <div id="welcome">
+    <h2 style="margin:0;">DesktopShare</h2>
+    <div style="max-width:640px; line-height:1.4; font-size:14px;">
+      <p>Steps to start sharing:</p>
+      <ol style="text-align:left; margin:0 auto 10px; padding-left:20px;">
+        <li>Run signaling server: <code>npm run signal</code> (or use existing URL)</li>
+        <li>Enter the server URL below and click <b>Connect</b></li>
+        <li>Select a source from the list to start streaming</li>
+        <li>Open the app on another machine, connect to same URL to view</li>
+      </ol>
+      <p>You can close this panel once you connect.</p>
+    </div>
+    <button id="welcomeClose">Got it</button>
+  </div>
+  <div id="sidebar">
+    <div>
+      <input id="signalUrl" placeholder="http://localhost:3000" style="width:100%; box-sizing:border-box;" />
+      <div style="margin-top:6px; display:flex; gap:6px;">
+        <button id="connectBtn" style="flex:1;">Connect</button>
+        <select id="qualityProfile" style="flex:1;">
+          <option value="speed">Speed 720p/15</option>
+          <option value="best" selected>Best 1080p/30</option>
+        </select>
+      </div>
+      <div id="status">Not connected</div>
+    </div>
+    <div id="controls">
+      <button id="swapBtn">Swap</button>
+      <button id="remoteFullBtn">Remote Full</button>
+      <button id="localFullBtn">Local Full</button>
+      <button id="bothSideBtn">Side</button>
+    </div>
+    <h3>Sources</h3>
+    <ul id="sources"></ul>
+    <div id="footer">DesktopShare – Free to use</div>
+  </div>
+  <div class="videos" id="videosContainer">
+    <div id="localWrap">
+      <h3>Local</h3>
+      <video id="localVideo" autoplay muted></video>
+    </div>
+    <div id="remoteWrap">
+      <h3>Remote</h3>
+      <video id="remoteVideo" autoplay></video>
+    </div>
+  </div>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="renderer.js"></script>
+  <script>
+    // Basic UI logic for restored controls
+    const localWrap = document.getElementById('localWrap');
+    const remoteWrap = document.getElementById('remoteWrap');
+    const videosContainer = document.getElementById('videosContainer');
+    const swapBtn = document.getElementById('swapBtn');
+    const remoteFullBtn = document.getElementById('remoteFullBtn');
+    const localFullBtn = document.getElementById('localFullBtn');
+    const bothSideBtn = document.getElementById('bothSideBtn');
+    const welcome = document.getElementById('welcome');
+    document.getElementById('welcomeClose').onclick = () => welcome.style.display='none';
+
+    function clearFull() {
+      document.querySelectorAll('.full').forEach(el => el.classList.remove('full'));
+      localWrap.classList.remove('hidden');
+      remoteWrap.classList.remove('hidden');
+    }
+    swapBtn.onclick = () => {
+      if (localWrap.nextElementSibling === remoteWrap) {
+        videosContainer.insertBefore(remoteWrap, localWrap);
+      } else {
+        videosContainer.insertBefore(localWrap, remoteWrap);
+      }
+    };
+    remoteFullBtn.onclick = () => { clearFull(); remoteWrap.classList.add('full'); localWrap.classList.add('hidden'); };
+    localFullBtn.onclick = () => { clearFull(); localWrap.classList.add('full'); remoteWrap.classList.add('hidden'); };
+    bothSideBtn.onclick = () => clearFull();
+    window.addEventListener('keydown', e => { if (e.key === 'Escape') clearFull(); });
+  </script>
+</body>
+</html>
